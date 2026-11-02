@@ -1,5 +1,6 @@
 const express=require("express"),session=require("express-session"),QR=require("qrcode"),crypto=require("crypto"),fs=require("fs"),path=require("path");
 const app=express(),PORT=process.env.PORT||3000,SECRET=process.env.SESSION_SECRET||"change-this-secret",QRSECRET=process.env.QR_SECRET||"change-this-qr-secret";
+app. set("trust proxy", 1);
 const dir=path.join(__dirname,"data"),uf=path.join(dir,"users.json"),af=path.join(dir,"attendance.json");fs.mkdirSync(dir,{recursive:true});
 function read(f,d){if(!fs.existsSync(f))fs.writeFileSync(f,JSON.stringify(d,null,2));return JSON.parse(fs.readFileSync(f))}
 function save(f,d){fs.writeFileSync(f,JSON.stringify(d,null,2))}
